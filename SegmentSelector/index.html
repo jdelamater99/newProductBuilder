@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Super Segment Style Sponsor 4x4</title>
+        
+    <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
+        
+    <script src="../bin/jquery.js" type="text/javascript"></script>
+    <script src="../bin/builderFunctions.js" type="text/javascript"></script>
+        
+    <script>
+        // exempt from field check
+        var excludes = ["vidUrl", "vidTriggerUrl", "tracking"];
+        
+        function init() {
+            var adOutput = '<script type="text/javascript">';
+
+            adOutput += '\n\n(function(window, undefined) {';
+            adOutput += '\n\twindow.top.postMessage(JSON.stringify({';
+            adOutput += '\n\t\t"id": "styleSponsored",';
+
+            // vehicleStyle
+            adOutput += '\n\t\t' + '"'+pageFormFields[0].tag+'": "' + el(pageFormFields[0].id).value + '",';
+
+            // imgURL
+            adOutput += '\n\t\t' + '"'+pageFormFields[1].id+'": "' + el(pageFormFields[1].id).value + '",';
+
+            // logoURL
+            adOutput += '\n\t\t' + '"'+pageFormFields[2].id+'": "' + el(pageFormFields[2].id).value + '",';
+
+            // styleLabelLine1
+            adOutput += '\n\t\t' + '"'+pageFormFields[3].id+'": "' + el(pageFormFields[3].id).value + '",';
+            // styleLabelLine2
+            adOutput += '\n\t\t' + '"'+pageFormFields[4].id+'": "' + el(pageFormFields[4].id).value + '",';
+
+            // searchText
+            adOutput += '\n\t\t' + '"'+pageFormFields[5].id+'": "' + el(pageFormFields[5].id).value + '",';
+
+            // searchURL
+            adOutput += '\n\t\t' + '"'+pageFormFields[6].id+'": "%%CLICK_URL_ESC%%' + el(pageFormFields[6].id).value + '",';
+
+            adOutput += '\n\t' + '}),window.location.href);';
+            adOutput += '\n' + '})(window);';
+            adOutput += '\n' + '<\/script>';
+
+            // impresssion tracker
+            adOutput += '\n' + el(pageFormFields[7].id).value;
+                        
+            if (formCompetion() != false){
+                output = unHTMLEntities(adOutput);
+                el("output").innerHTML = output;
+            } else {
+                el("output").innerHTML = "Fill out all the fields to generate the tag";   
+            }
+        }
+        
+        var pageFormFields = [
+        /* 0 */    {id: "vehicleStyle", title: "Vehicle Style", tag: "vehicleStyle", type: ""},
+        /* 1 */    {id: "imgURL", title: "Image URL (120x60 left facing)", tag: "imgURL", type: "bin/id_image.png"},
+        /* 2 */    {id: "logoURL", title: "Logo URL (90x40)", tag: "logoURL", type: "bin/id_image.png"},
+        /* 3 */    {id: "styleLabelLine1", title: "Line 1", tag: "styleLabelLine1", type: "bin/id_text.png"},
+        /* 4 */    {id: "styleLabelLine2", title: "Line 2", tag: "styleLabelLine2", type: "bin/id_text.png"},
+        /* 5 */    {id: "searchText", title: "Search Text", tag: "searchText", type: "bin/id_text.png"},
+        /* 6 */    {id: "searchURL", title: "Search URL", tag: "searchURL", type: "bin/id_url.png"},
+        /* 7 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"}   
+        ];
+        
+        var defaultValues = [
+            {id: "tracking", value: '<script src="https://cdn.doubleverify.com/dvtp_src.js?ctx=XXXXXX&cmp=XXXXXX&sid=XXXXXX&plc=XXXXXX&num=%%CACHEBUSTER%%&adid=&advid=XXXXXX&adsrv=1&region=30&btreg=&btadsrv=&crt=&crtname=&chnl=&unit=&pid=&uid=&tagtype=&dvtagver=6.1.src" type="text/javascript"><\/script>\n<img src="https://demdex.net/event?d_src=XXXXXX&d_event=imp&d_bu=XXXXXX&d_creative=XXXXXX&d_adgroup=XXXXXX&d_placement=XXXXXX&d_site=XXXXXX&d_campaign=XXXXXX&d_cb=%%CACHEBUSTER%%" width=\'1\' height=\'1\' border=\'0\'/>\n<img src=\'https://h.nexac.com/e/a-XXXXXX/s-XXXXXX/c-XXXXXX/g-XXXXXX.xgi?pkey=XXXXXX&chpcm=XXXXXX&chpsg=XXXXXX&chpcr=XXXXXX&chpck=XXXXXX&rand=%%CACHEBUSTER%%&chpth=XXXXXX\' width=\'1\' height=\'1\' border=\'0\'>'},
+            {id: "vehicleStyle", value: "----"},
+            {id: "imgURL", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/style/2015/{BRAND}/{BRAND}-120x60.png"},
+            {id: "logoURL", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/style/2015/{BRAND}/{BRAND}-logo-90x40.png"},
+            {id: "styleLabelLine1", value: "{SEGEMENT} sponsored by {MAKE}"},
+            {id: "styleLabelLine2", value: "2016 {MAKE} {MODEl}"},
+            {id: "searchText", value: "{Search Now}"},
+            {id: "searchURL", value: "http://www.autotrader.com/cars-for-sale/New+Cars/{YEAR}/{MAKE}/{MODEL}"}
+        ];
+        
+        var styleSelect = [
+            {code: "----", display: "----"},
+            {code: "AWD4WD", display: "AWD & 4WD"},
+            {code: "COMMERCIAL", display: "Commercial"},
+            {code: "CONVERT", display: "Convert"},
+            {code: "COUPE", display: "Coupe"},
+            {code: "HATCH", display: "Hatch"},
+            {code: "HYBEL", display: "Hybrid"},
+            {code: "LUXURY", display: "Luxury"},
+            {code: "SEDAN", display: "Sedan"},
+            {code: "SUVCROSS", display: "SUV & Crossover"},
+            {code: "TRUCKS", display: "Truck"},
+            {code: "VANMV", display: "Van & Minivan"},
+            {code: "WAGON", display: "Wagon"}
+        ];
+        
+        function buildForm() {
+            var formOutput = "";
+            if (version == "pageForm") {
+                for (i=0; i<pageFormFields.length; i++){
+                    if (pageFormFields[i].id == "tracking"){
+                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div><textarea class='defaultInput' id=\""+pageFormFields[i].id+"\" ></textarea></div> <div><img class='idTA' src='../"+ pageFormFields[i].type +"' /></div>  </div>\n";
+                    } else if (pageFormFields[i].id == "vehicleStyle") {
+                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><select class='defaultInput' id=\""+pageFormFields[i].id+"\"></div></div>\n";
+                        for (j=0; j<styleSelect.length; j++){
+                            formOutput += "<option value=\""+styleSelect[j].code+"\">"+styleSelect[j].display+"</option>"
+                        }
+                        formOutput += "</select>";
+                    } else {
+                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><input class='defaultInput' id=\""+pageFormFields[i].id+"\" type=text /></div> <div><img src='../"+ pageFormFields[i].type +"' /></div>  </div>\n";
+                    }
+                }
+            } 
+            
+            el("formDiv").innerHTML = formOutput;
+            
+            if (params["test"]){
+                for (i=0; i<defaultValues.length; i++) {
+                    el(defaultValues[i].id).value = defaultValues[i].value;
+                }
+            }
+            
+            inputFocus();
+        }
+        
+        $( buildForm );
+    </script>
+    
+    </head>
+    <body>
+    	<form name="adBuilder">
+            <div>
+            
+            <div id="formDiv"></div>
+            
+    		
+    		<div>
+                <br />
+                <input id="submitBtn" type=button value="Generate Tag" onmousedown="init();" />
+                <input id="clearBtn" type=button value="Clear Form" onmousedown="clearform();" />
+            </div>
+        </form>
+    	
+    	<p>
+    		<textarea id="output"></textarea>
+    	</p>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+* { 
+    font: .965em sans-serif; 
+}
+
+img {
+    width: 60px;
+    height: 10px;
+    position: absolute;
+    left: 725px;
+    margin-top: -20px;
+}
+
+.idTA {
+    margin-top: -50px;   
+}
+textarea {
+    width: 502px;
+    height: 50px;
+    border: 1px solid #262626;
+    }
+div + div:not(.containing-element) {
+    width: 1175px;
+    }
+input {
+    color: #000;
+    width: 500px;
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #262626;
+    }
+.defaultInput {
+    color: #555;
+    background: #ccc;
+    }
+.errorInput {
+    color: #FFB6DA;
+    background: #c00;
+    }
+.title {
+    width: 205px;
+    float: left;
+    text-align: right;
+    }
+.checkbox input {
+    width: 15px;
+    }
+#submitBtn,#clearBtn,#previewBtn {
+    width: 100px;
+    color: white;
+    border: 1px solid black;
+    background-color: green;
+    }
+#output {
+    overflow: auto;
+    width: 640px;
+    height: 300px;
+    padding: 10px;
+    border: 1px dashed silver;
+    }
+.icon {
+    background: url(../bin/optional.png) 0 0 no-repeat;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    }
+.label {
+    font-size: .75em;
+    }

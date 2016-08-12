@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Homepage Certified 300x201</title>
+        
+    <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
+        
+    <script src="../bin/jquery.js" type="text/javascript"></script>
+    <script src="../bin/builderFunctions.js" type="text/javascript"></script>
+        
+    <script>
+        // exempt from field check
+        var excludes = ["vidUrl", "vidTriggerUrl", "tracking"];
+        
+        function init() {
+            var adOutput = '<!-- DESKTOP: CERTIFIED AD (300x201) --><link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" media="screen" href="//www.autotrader.com/0_0_0/bundles/base.css" />';
+            
+            adOutput += '\n' + '<!-- Impression Tag -->';
+            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
+            
+            adOutput += '\n' + '<style type="text/css">a {font-size: 15px; color: #505fbb; text-decoration: none; } a:hover {color: #000000; } a > img {border: none; } #ia-certified-image {margin: 5px 0 5px 0; position: relative; } #ia-certified-logo {float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #ccc; } #ia-certified-sponsor {color: #999; } </style>';
+            
+            adOutput += '\n' + '<!-- Sponsor Link -->';
+            adOutput += '\n' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
+
+            adOutput += '\n\t' + '<!-- Sponsor Image -->';
+            adOutput += '\n\t' + '<img id="ia-certified-image" src="' + el(pageFormFields[2].id).value + '">';
+            adOutput += '\n' + '</a>';
+            
+            adOutput += '\n' + '<!-- Sponsor Logo -->';
+            adOutput += '\n' + '<img id="ia-certified-logo" src="' + el(pageFormFields[3].id).value + '">';
+            
+            adOutput += '\n' + '<!-- Sponsor Brand -->';
+            adOutput += '\n' + '<div id="ia-certified-sponsor">';
+            adOutput += '\n\t' + el(pageFormFields[4].id).value;
+            adOutput += '\n' + '</div>';
+            adOutput += '\n' + '<div id="ia-certified-link">';
+            
+            adOutput += '\n\t' + '<!-- Sponsor Link -->';
+            adOutput += '\n\t' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
+            adOutput += '\n\t\t' + el(pageFormFields[5].id).value + ' <span class="atcui-icon atcui-externalLink"></span>';
+            adOutput += '\n\t' + '</a>';
+            adOutput += '\n' + '</div>';
+            adOutput += '\n' + '<div class="atcui-clearboth"></div>';
+        
+            
+                        
+            if (formCompetion() != false){
+                output = unHTMLEntities(adOutput);
+                el("output").innerHTML = output;
+            } else {
+                el("output").innerHTML = "Fill out all the fields to generate the tag";   
+            }
+        }
+        
+        
+        var pageFormFields = [
+        /* 0 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "id_tag.png"},
+            
+        /* 1 */    {id: "sponsorLink", title: "Sponsor Link", tag: "sponsorLink", type: "id_url.png"},
+        /* 2 */    {id: "sponsorImg", title: "Sponsor Image (300x150)", tag: "sponsorImg", type: "id_image.png"},
+        /* 3 */    {id: "sponsorLogo", title: "Sponsor Logo (123x30 max)", tag: "sponsorLogo", type: "id_image.png"},
+        /* 4 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "id_text.png"},
+        /* 5 */    {id: "sponsorLinkTxt", title: "Link Text", tag: "sponsorLinkTxt", type: "id_text.png"}
+        ];
+        
+        var defaultValues = [
+            {id: "tracking", value: '<script src="//cdn.doubleverify.com/dvtp_src.js?ctx=XXXX&cmp=XXXX&sid=XXXX&plc=XXXX&num=&adid=&advid=XXXX&adsrv=1&region=30&btreg=&btadsrv=&crt=&crtname=&chnl=&unit=&pid=&uid=&tagtype=&dvtagver=6.1.src&%%CACHEBUSTER%%" type="text/javascript"><\/script><SCRIPT language=\'JavaScript1.1\' SRC="https://ad.doubleclick.net/ddm/adj/XXXX.autotrader.XXXX/XXXX.XXXX;sz=1x1;ord=%%CACHEBUSTER%%?"><\/SCRIPT><NOSCRIPT><A HREF="https://ad.doubleclick.net/ddm/jump/XXXX.autotrader.XXXX/XXXX.XXXX;sz=1x1;ord=%%CACHEBUSTER%%?"><IMG SRC="https://ad.doubleclick.net/ddm/ad/XXXX.autotrader.XXXX/XXXX.XXXX;sz=1x1;ord=%%CACHEBUSTER%%?" BORDER=0 WIDTH=1 HEIGHT=1 ALT="Advertisement"></A></NOSCRIPT>'},
+            {id: "sponsorLink", value: "https://ad.doubleclick.net/ddm/clk/XXXX;XXXX;a"},
+            {id: "sponsorImg", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/certified/{YEAR}/Nov/HP_CPO_300x150_{BRAND}.png"},
+            {id: "sponsorLogo", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/certified/{YEAR}/Nov/{BRAND}-certified-logo.jpg"},
+            {id: "sponsorBrand", value: "Sponsored by {BRAND}"},
+            {id: "sponsorLinkTxt", value: "{See program details}"}
+        ];
+
+        
+        function buildForm() {
+            var formOutput = "";
+            for (i=0; i<pageFormFields.length; i++){
+                if (pageFormFields[i].id == "tracking")
+                    formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div><textarea class='defaultInput' id=\""+pageFormFields[i].id+"\" ></textarea></div> <div><img class='idTA' src='../"+ pageFormFields[i].type +"' /></div> </div>\n";    
+                else 
+                    formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><input class='defaultInput' id=\""+pageFormFields[i].id+"\" type=text /></div> <div><img src='../"+ pageFormFields[i].type +"' /></div> </div>\n";
+            } 
+            
+            el("formDiv").innerHTML = formOutput;
+            
+            // default values for testing
+            if (params["test"]){
+                for (i=0; i<defaultValues.length; i++) {
+                    el(defaultValues[i].id).value = defaultValues[i].value;
+                }
+            }
+            
+            inputFocus();
+            
+        }
+        
+        $( buildForm );
+    </script>
+    
+    </head>
+    <body>
+    	<form name="adBuilder">
+            <div>
+            
+            <div id="formDiv"></div>
+            
+    		
+    		<div>
+                <br />
+                <input id="submitBtn" type=button value="Generate Tag" onmousedown="init();" />
+                <input id="clearBtn" type=button value="Clear Form" onmousedown="clearform();" />
+            </div>
+        </form>
+    	
+    	<p>
+    		<textarea id="output"></textarea>
+    	</p>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Super Segment Make Search (Position C)</title>
+        
+    <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
+        
+    <script src="../bin/jquery.js" type="text/javascript"></script>
+    <script src="../bin/builderFunctions.js" type="text/javascript"></script>
+        
+    <script>
+        // exempt from field check
+        var excludes = ["impressionTag2"];
+        
+        function init() {
+            var adOutput = '<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" type="text/css">';
+            adOutput += '\n' + '<script type="text/javascript">';
+            adOutput += '\n' + '/* Impression Tag */';
+            adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[0].id).value + '";';
+            if (el(pageFormFields[1].id).value != "")
+                adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[1].id).value + '";';
+            adOutput += '\n' + '<\/script>';
+
+            adOutput += '\n\n' + '<style type="text/css"> .ia-m-ad {width: 100%; height: 100%; min-width: 255px; overflow: hidden; background-color: #f2f1f1; font-family: \'Source Sans Pro\', sans-serif; } .ia-m-ad a {color: #666; text-decoration: none; } .ia-m-message {float: left; margin-left: 10px; height: 100%; display: table; } .ia-m-message-position {display: table-cell; vertical-align: middle; } .ia-m-brand {font-size: .7em; font-weight: 100; margin: 2px 0; } .ia-m-vehicle {font-size: 1em; font-weight: 600; } .ia-m-logo {float: right; margin-right: 10px; height: 100%; } .ia-m-logo-position {display: inline-block; height: 100%; vertical-align: middle; } .ia-m-logo img {max-width: 33px; max-height: 35px; vertical-align: middle; margin-top: -1px; } .ia-m-clear {clear: both; } </style>';
+            adOutput += '\n\n' + '<div class="ia-m-ad">';
+            adOutput += '\n\t' + '<!-- Sponsor Link -->';
+            adOutput += '\n\t' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[2].id).value + '" target="_parent">';
+            adOutput += '\n\t\t' + '<div class="ia-m-message">';
+            adOutput += '\n\t\t\t' + '<div class="ia-m-message-position">';
+            adOutput += '\n\t\t\t\t' + '<!-- Sponsor Brand -->';
+            adOutput += '\n\t\t\t\t' + '<div class="ia-m-brand">'+ el(pageFormFields[3].id).value +'</div>';
+            adOutput += '\n\t\t\t\t' + '<!-- Sponsor Vehicle -->';
+            adOutput += '\n\t\t\t\t' + '<div class="ia-m-vehicle">'+ el(pageFormFields[4].id).value +'</div>';
+            adOutput += '\n\t\t\t' + '</div>';
+            adOutput += '\n\t\t' + '</div>';
+            adOutput += '\n\t\t' + '<!-- Sponsor Link -->';
+            adOutput += '\n\t\t' + '<div class="ia-m-logo"><span class="ia-m-logo-position"></span><img src="'+ el(pageFormFields[5].id).value +'"></div>';
+            adOutput += '\n\t\t' + '<div class="ia-m-clear"></div>';
+            adOutput += '\n\t' + '</a>';
+            adOutput += '\n' + '<div>';
+            
+                        
+            if (formCompetion() != false){
+                output = unHTMLEntities(adOutput);
+                el("output").innerHTML = output;
+            } else {
+                el("output").innerHTML = "Fill out all the fields to generate the tag and make sure no prepopulated data remains.";   
+            }
+        }
+        
+        var pageFormFields = [
+        /* 0 */    {id: "impressionTag", title: "Impression Tag 1", tag: "impressionTag", type: "bin/id_url.png"},
+        /* 1 */    {id: "impressionTag2", title: "Impression Tag 2", tag: "impressionTag2", type: "bin/id_url.png"},
+        /* 2 */    {id: "clickthru", title: "Click Thru", tag: "clickthru", type: "bin/id_url.png"},
+        /* 3 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "bin/id_text.png"},
+        /* 4 */    {id: "sponsorVehicle", title: "Sponsor Vehicle", tag: "sponsorVehicle", type: "bin/id_text.png"},
+        /* 5 */    {id: "sponsorLogo", title: "Sponsor Logo (66x70)", tag: "sponsorLogo", type: "bin/id_image.png"},
+        
+        ];
+        
+        // default values for testing
+            var defaultValues = [
+                {id: "impressionTag", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=XX&mc=imp&pli=XXXXXXXXX&PluID=0&ord=%%CACHEBUSTER%%&rtu=-1&pcp=$$%%PATTERN:dma%%$$"},
+                {id: "impressionTag2", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=YY&mc=imp&pli=YYYYYYYYY&PluID=0&ord=%%CACHEBUSTER%%&rtu=-1&pcp=$$%%PATTERN:dma%%$$"},
+                {id: "clickthru", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=ZZ&mc=click&pli=ZZZZZZZZ&PluID=0&ord=%%CACHEBUSTER%%&pcp=$$%%PATTERN:dma%%$$"},
+                {id: "sponsorBrand", value: "Sponsored by {Brand}"},
+                {id: "sponsorVehicle", value: "Find {Brand} vehicles"},
+                {id: "sponsorLogo", value: "//content.autotrader.com/content/dam/autotrader/ads/mobile/search/2015/01/logo-{brand}-66x70.png"},
+            ];
+        
+        function buildForm() {
+            var formOutput = "";
+            if (version == "pageForm") {
+                for (i=0; i<pageFormFields.length; i++){
+                    formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><input class='defaultInput' id=\""+pageFormFields[i].id+"\" type=text /></div> <div><img src='../"+ pageFormFields[i].type +"' /></div> </div>\n";
+                }
+            } 
+            
+            el("formDiv").innerHTML = formOutput;
+            
+            
+            if (params["test"]){
+                for (i=0; i<defaultValues.length; i++) {
+                    el(defaultValues[i].id).value = defaultValues[i].value;
+                }
+            }
+            
+            inputFocus();
+        }
+        
+        $( buildForm );
+    </script>
+    
+    </head>
+    <body>
+    	<form name="adBuilder">
+            <div>
+            
+            <div id="formDiv"></div>
+            
+    		
+    		<div>
+                <br />
+                <input id="submitBtn" type=button value="Generate Tag" onmousedown="init();" />
+                <input id="clearBtn" type=button value="Clear Form" onmousedown="clearform();" />
+            </div>
+        </form>
+    	
+    	<p>
+    		<textarea id="output"></textarea>
+    	</p>
+    </body>
+</html>

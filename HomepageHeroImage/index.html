@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Homepage Hero Ad</title>
+        
+    <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
+        
+    <script src="../bin/jquery.js" type="text/javascript"></script>
+    <script src="../bin/builderFunctions.js" type="text/javascript"></script>
+        
+    <script>
+        // exempt from field check
+        var excludes = ["vidUrl", "vidTriggerUrl", "tracking"];
+        
+        function init() {
+            var adOutput = '<script type="text/javascript">';
+            adOutput += '\n' + '(function(window, undefined) {';
+            adOutput += '\n\t' + 'window.top.postMessage(JSON.stringify({';
+            adOutput += '\n\t\t' + '"id" : "search",';
+
+            // sponsored
+            adOutput += '\n\t\t' + '"'+pageFormFields[0].tag+'" : "' + el(pageFormFields[0].id).value + '",';
+
+            // vehicle
+            adOutput += '\n\t\t' + '"'+pageFormFields[1].tag+'" : "' + el(pageFormFields[1].id).value;
+            // cta
+            adOutput += ' | ' + '<a href=\\"%%CLICK_URL_ESC%%' + el(pageFormFields[2].id).value + '\\">' + el(pageFormFields[3].id).value + '</a>';
+            // 1x1
+            adOutput += '<IMG SRC=\\"' + el(pageFormFields[4].id).value + '%%CACHEBUSTER%%\\" BORDER=\\"0\\" HEIGHT=\\"1\\" WIDTH=\\"1\\" ALT=\\"Advertisement\\">';
+            adOutput += '<style>div#hero-sponsored-wrapper-no-video {width: 1300px;margin: 0 auto;right: 0; left: 0;text-align: right;}</style>",';
+
+            // search
+            adOutput += '\n\t\t' + '"'+pageFormFields[5].tag+'" : "%%CLICK_URL_ESC%%' + el(pageFormFields[5].id).value + '",';
+
+            // img
+            adOutput += '\n\t\t' + '"'+pageFormFields[6].tag+'" : "' + el(pageFormFields[6].id).value + '",';
+
+            // video
+            adOutput += '\n\t\t' + '"'+pageFormFields[7].tag+'" : "' + el(pageFormFields[7].id).value + '",';
+
+            // video trigger
+            adOutput += '\n\t\t' + '"'+pageFormFields[8].tag+'" : "' + el(pageFormFields[8].id).value + '"';
+
+            adOutput += '\n\t' + '}),window.top.location.href);';
+            adOutput += '\n' + '})(window);';
+            adOutput += '\n' + '<\/script>';
+
+            // impresssion tracker
+            adOutput += '\n' + el(pageFormFields[9].id).value;
+                        
+            if (formCompetion() != false){
+                output = unHTMLEntities(adOutput);
+                el("output").innerHTML = output;
+            } else {
+                el("output").innerHTML = "Fill out all the fields to generate the tag and make sure no prepopulated data remains.";   
+            }
+        }
+        
+        var pageFormFields = [
+        /* 0 */    {id: "sponsoredBy", title: "Sponsored By", tag: "sponsoredBy", type: "bin/id_text.png"},
+        /* 1 */    {id: "vehicleText", title: "Vehicle Text (HTML allowed)", tag: "vehicleText", type: "bin/id_text.png"},
+        /* 2 */    {id: "clickthru", title: "Click Thru", tag: "clickthru", type: "bin/id_url.png"},
+        /* 3 */    {id: "cta", title: "CTA", tag: "cta", type: "bin/id_url.png"},
+        /* 4 */    {id: "onexone", title: "1x1", tag: "onexone", type: "bin/id_image.png"},
+            
+        /* 5 */    {id: "searchUrl", title: "Search URL", tag: "searchUrl", type: "bin/id_url.png"},
+            
+        /* 6 */    {id: "vehicleImage", title: "Vehicle Image (1300x330)", tag: "imgUrl", type: "bin/id_image.png"},
+        /* 7 */    {id: "vidUrl", title: "Video URL <div class='icon'></div>", tag: "vidUrl", type: "bin/id_video.png"},
+        /* 8 */    {id: "vidTriggerUrl", title: "Video Thumbnail URL <div class='icon'></div>", tag: "vidTriggerUrl", type: "bin/id_url.png"},
+            
+        /* 9 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"}
+        ];
+        
+        var defaultValues = [
+                {id: "sponsoredBy", value: "Sponsored by {BRAND}"},
+                {id: "vehicleText", value: "2016 {BRAND} {MODEL}"},
+                {id: "clickthru", value: "https://ad.doubleclick.net/ddm/clk/XXXXXXXX;XXXXXXXX;z"},
+                {id: "cta", value: "{LEARN MORE}"},
+                {id: "onexone", value: "https://ad.doubleclick.net/ddm/ad/N3016.autotrader.comSDYYYY/YYYYYYYYY.YYYYYYYYY;sz=1x1;ord="},
+                {id: "searchUrl", value: "http://www.autotrader.com/cars-for-sale/showcase.xhtml?endYear=2016&listingType=new&modelCode1={MAKE}&startYear=2015&makeCode1={BRAND}"},
+                {id: "vehicleImage", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/search_sponsor/2015/{BRAND}/Autotrader_1300x330_HP_16{MAKE}.jpg"},
+                {id: "tracking", value: '<script src="https://cdn.doubleverify.com/dvtp_src.js?ctx=ZZZZZZZZ&cmp=ZZZZZZZZ&sid=ZZZZZZZZ&plc=ZZZZZZZZ&num=%%CACHEBUSTER%%&adid=&advid=ZZZZZZZZ&adsrv=1&region=30&btreg=&btadsrv=&crt=&crtname=&chnl=&unit=&pid=&uid=&tagtype=&dvtagver=6.1.src" type="text/javascript"><\/script><img src="https://ford.demdex.net/event?d_src=YYZYYZ&d_event=imp&d_bu=YYZYYZ&d_creative=YYZYYZ&d_adgroup=YYZYYZ&d_placement=YYZYYZ&d_site=YYZYYZ&d_campaign=YYZYYZ&d_cb=%%CACHEBUSTER%%" width=\'1\' height=\'1\' border=\'0\'/><img src=\'https://h.nexac.com/e/a-ZZY/s-ZZY/c-ZZY/g-ZZY.xgi?pkey={keycode}&chpcm=ZZYZZY&chpsg=ZZYZZY&chpcr=ZZYZZY&chpck=ZZYZZY&rand=%%CACHEBUSTER%%&chpth=ZZYZZY\' width=\'1\' height=\'1\' border=\'0\'>'}
+        ];
+        
+        function buildForm() {
+            var formOutput = "";
+            if (version == "pageForm") {
+                for (i=0; i<pageFormFields.length; i++){
+                    if (pageFormFields[i].id != "tracking")
+                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><input class='defaultInput' id=\""+pageFormFields[i].id+"\" type=text /></div> <div><img src='../"+ pageFormFields[i].type +"' /></div>  </div>\n";
+                    else 
+                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div><textarea class='defaultInput' id=\""+pageFormFields[i].id+"\" ></textarea></div> <div><img class='idTA' src='../"+ pageFormFields[i].type +"' /></div> </div>\n";
+                }
+            } 
+            
+            el("formDiv").innerHTML = formOutput;
+            
+            if (params["test"]){
+                for (i=0; i<defaultValues.length; i++) {
+                    el(defaultValues[i].id).value = defaultValues[i].value;
+                }
+            }
+            
+            inputFocus();
+        }
+        
+        $( buildForm );
+    </script>
+    
+    </head>
+    <body>
+        
+    	<form name="adBuilder">
+            <div></div>
+            <div id="formDiv"></div>
+            <div class="label"><sup  class='icon'>•</sup> optional</div>
+            		
+    		<div>               
+                <br />
+                <input id="submitBtn" type=button value="Generate Tag" onmousedown="init();" />
+                <input id="clearBtn" type=button value="Clear Form" onmousedown="clearform();" />
+            </div>
+                
+        </form>
+    	
+    	<p>
+    		<textarea id="output"></textarea>
+    	</p>
+    </body>
+</html>
