@@ -16,32 +16,31 @@
         var modelName = new Array;
         
         function init() {
-            if (version == "pageForm") {
-                var adOutput = '<script type="text/javascript">';
-                adOutput += '\n' + '/* Impression Tag */';
-                adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[0].id).value + '";';
-                if (el(pageFormFields[1].id).value != "")
-                    adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[1].id).value + '";';
-                
-                adOutput += '\n\n(function(window, undefined) {';
-                adOutput += '\n\twindow.top.postMessage(JSON.stringify({';
-                adOutput += '\n\t\t"id": "searchShortcut",';
-                
-                // make
-                adOutput += '\n\t\t' + '"'+pageFormFields[2].tag+'" : "' + makeSelect[el(pageFormFields[2].id).selectedIndex].display + '",';
-                adOutput += '\n\t\t' + '"'+pageFormFields[2].id+'" : "' + el(pageFormFields[2].id).value + '",';
-                adOutput += '\n\t\t' + '"'+pageFormFields[3].id+'" : "%%CLICK_URL_ESC%%' + el(pageFormFields[3].id).value + '",';
-                
-                // model
-                adOutput += '\n\t\t' + '"'+pageFormFields[4].tag+'" : "' + modelName[el("modelCode").selectedIndex] + '",';
-                adOutput += '\n\t\t' + '"'+pageFormFields[4].id+'" : "' + el(pageFormFields[4].id).value + '",';
-                adOutput += '\n\t\t' + '"'+pageFormFields[5].id+'" : "%%CLICK_URL_ESC%%' + el(pageFormFields[5].id).value + '",';
-                
-    
-                adOutput += '\n\t' + '}),window.location.href);';
-                adOutput += '\n' + '})(window);';
-                adOutput += '\n' + '<\/script>';
-            } 
+            var adOutput = '<script type="text/javascript">';
+            adOutput += '\n' + '/* Impression Tag */';
+            adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[0].id).value + '";';
+            if (el(pageFormFields[1].id).value != "")
+                adOutput += '\n' + '(new Image()).src = "' + el(pageFormFields[1].id).value + '";';
+
+            adOutput += '\n\n(function(window, undefined) {';
+            adOutput += '\n\twindow.top.postMessage(JSON.stringify({';
+            adOutput += '\n\t\t"id": "searchShortcut",';
+
+            // make
+            adOutput += '\n\t\t' + '"'+pageFormFields[2].tag+'" : "' + makeSelect[el(pageFormFields[2].id).selectedIndex].display + '",';
+            adOutput += '\n\t\t' + '"'+pageFormFields[2].id+'" : "' + el(pageFormFields[2].id).value + '",';
+            adOutput += '\n\t\t' + '"'+pageFormFields[3].id+'" : "%%CLICK_URL_ESC%%' + el(pageFormFields[3].id).value + '",';
+
+            // model
+            adOutput += '\n\t\t' + '"'+pageFormFields[4].tag+'" : "' + modelName[el("modelCode").selectedIndex] + '",';
+            adOutput += '\n\t\t' + '"'+pageFormFields[4].id+'" : "' + el(pageFormFields[4].id).value + '",';
+            adOutput += '\n\t\t' + '"'+pageFormFields[5].id+'" : "%%CLICK_URL_ESC%%' + el(pageFormFields[5].id).value + '",';
+
+
+            adOutput += '\n\t' + '}),window.location.href);';
+            adOutput += '\n' + '})(window);';
+            adOutput += '\n' + '<\/script>';
+
             
                         
             if (formCompetion() != false){
@@ -62,8 +61,8 @@
         ];
         
         var defaultValues = [
-            {id: "makeCode", value: "ACURA"},
-            {id: "modelCode", value: "NSX"},
+            {id: "makeCode", value: "-----"},
+            {id: "modelCode", value: "-----"},
             {id: "impressionTag1", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli={AD_ID}&PluID=0&ord=%%CACHEBUSTER%%&rtu=-1&pcp=$$%%PATTERN:dma%%$$"},
             {id: "impressionTag2", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=19&mc=imp&pli={AD_ID}&PluID=0&ord=%%CACHEBUSTER%%&rtu=-1&pcp=$$%%PATTERN:dma%%$$"},
             {id: "makeSrc", value: "http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli={AD_ID}&PluID=0&ord=%%CACHEBUSTER%%&pcp=$$%%PATTERN:dma%%$$"},
@@ -184,7 +183,7 @@
         // populate model dropdowns
         function modelSelector(){
             // initize array for model dropdown
-            modelName = "";
+            
             var output = '';
             var make = el("makeCode").value;
             console.log (make);
@@ -202,6 +201,8 @@
             }
             $("#modelCode").html(output);
             console.log(modelName);
+            
+            return modelName;
         }
         
         $( buildForm );

@@ -40,11 +40,11 @@ function clearform(){
     }
     
     try {
-        console.log ("trying to reset dropdowns");
+        //console.log ("trying to reset dropdowns");
         $("select").prop('selectedIndex', 0);
         modelSelector();
     } catch (err) {
-        console.log ("no dropdowns");
+        //console.log ("no dropdowns");
     }
     
 }
@@ -52,13 +52,13 @@ function clearform(){
 function unHTMLEntities(s) {
     s = s.replace(/\[timecode\]/gi, "%%CACHEBUSTER%%" );
     var strArr = s.split("&");
-    console.log( strArr.join("&amp;") );            
+    //console.log( strArr.join("&amp;") );            
     return strArr.join("&AMP;");
 }
 
 function inputFocus(){
     $("input, textarea, select").focus( function() {
-        console.log ( this.id + " clicked");
+        //console.log ( this.id + " clicked");
         var checkClass = $( this ).hasClass( "defaultInput errorInput" );
         if ( $( this ).hasClass( "defaultInput" ) || $( this ).hasClass( "errorInput" ) ) {
             $(this).removeClass("defaultInput errorInput"); 
@@ -77,7 +77,7 @@ function fieldCheck(s){
     // check for prepopulated data
     var i = -1;
     i = inGlobalArray( defaultValues, el(s).value );
-    console.log( s + ": " + i );
+    //console.log( s + ": " + i );
 
     if (el(s).value == defaultValues[i].value){
         $( "#" + s ).addClass( "errorInput" );
