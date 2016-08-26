@@ -15,6 +15,21 @@
         
         function init() {
             var adOutput = '<!-- MOBILE: STYLE SPONSOR -->';
+            adOutput = '\n' + '<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" type="text/css" />';
+            adOutput = '\n' + '<style type="text/css"> .ia-m-ad {width: 100%; height: 100%; min-width: 255px; overflow: hidden; background-color: #f2f1f1; font-family: "Source Sans Pro", sans-serif; } .ia-m-ad a {color: #666; text-decoration: none; } .ia-m-message {float: left; margin-left: 10px; height: 100%; display: table; } .ia-m-message-position {display: table-cell; vertical-align: middle; } .ia-m-brand {font-size: .7em; font-weight: 100; margin: 2px 0; } .ia-m-vehicle {font-size: 1em; font-weight: 600; } .ia-m-logo {float: right; margin-right: 10px; height: 100%; } .ia-m-logo-position {display: inline-block; height: 100%; vertical-align: middle; } .ia-m-logo img {max-width:35px; max-height:50px; vertical-align: middle; margin-top: -1px; } .ia-m-clear {clear: both; } </style>';
+            adOutput = '\n' + '<div class="ia-m-ad" data-cache-buster="%%CACHEBUSTER%%">';
+            adOutput = '\n\n' + '<span id="gmcMobile"> ';
+            adOutput = '\n\t' + '<!-- Sponsor Link -->';
+            adOutput = '\n\t' + '<a href="%%CLICK_URL_ESC%%{searchURL}" target="_parent">';
+            adOutput = '\n\t\t' + '<div class="ia-m-message">';
+            adOutput = '\n\t\t\t' + '<div class="ia-m-message-position">';
+            adOutput = '\n\t\t\t\t' + '<!-- Sponsor Brand -->';
+            adOutput = '\n\t\t\t\t' + '<div class="ia-m-brand">{styleLabelLine1}</div>';
+            
+            
+            
+            
+            
             adOutput += '\n' + '<IMG SRC="' + el(pageFormFields[1].id).value + '" BORDER=0 WIDTH=1 HEIGHT=1 ALT="Advertisement">';
             adOutput += '\n' + '<script type="text/javascript">';
 
