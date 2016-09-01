@@ -51,6 +51,7 @@ function clearform(){
 
 function unHTMLEntities(s) {
     s = s.replace(/\[timecode\]/gi, "%%CACHEBUSTER%%" );
+    s = s.replace(/\[timestamp\]/gi, "%%CACHEBUSTER%%" );
     var strArr = s.split("&");
     //console.log( strArr.join("&amp;") );            
     return strArr.join("&AMP;");
