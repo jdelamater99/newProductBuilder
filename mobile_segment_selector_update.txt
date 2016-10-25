@@ -35,3 +35,12 @@ window.top.postMessage(JSON.stringify({
 </script>
 
 <IMG SRC="{impressionTracker}" BORDER=0 WIDTH=1 HEIGHT=1 ALT="Advertisement"></A>
+
+
+
+{vehicleStyle}
+{imgURL}
+{styleLabelLine1}
+{styleLabelLine2}
+{searchURL}
+{impressionTracker}
