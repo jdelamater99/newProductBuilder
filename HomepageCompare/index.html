@@ -16,9 +16,6 @@
         function init() {
             var adOutput = '<!-- DESKTOP: COMPARE CAR AD (300x200) --> <link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"> <link rel="stylesheet" type="text/css" media="screen" href="//www.autotraderstatic.com/0_0_0/bundles/base.css" /> <style type="text/css"> #ia-compare-imp {position: relative; right: 0; top: 0; z-index: -1; } a {font-size: 15px; color: #505fbb; text-decoration: none; } a:hover {color: #000000; } a > img {border: none; } #ia-compare-image {margin: 0; z-index: 10010; } #ia-compare-model {position: relative; top: -30px; color: #666; } #ia-compare-logo {float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #ccc; } #ia-compare-sponsor {color: #999; } </style>';
             
-            adOutput += '\n' + '<!-- Impression Tag -->';
-            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
-            
             adOutput += '\n' + '<!-- Sponsor Link -->';
             adOutput += '\n' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
 
@@ -46,8 +43,10 @@
             adOutput += '\n\t' + '</a>';
             adOutput += '\n' + '</div>';
             adOutput += '\n' + '<div class="atcui-clearboth"></div>';
-        
             
+            adOutput += '\n' + '<!-- Impression Tag -->';
+            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
+
                         
             if (formCompetion() != false){
                 output = unHTMLEntities(adOutput);

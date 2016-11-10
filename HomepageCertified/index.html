@@ -17,9 +17,6 @@
         function init() {
             var adOutput = '<!-- DESKTOP: CERTIFIED AD (300x201) --><link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" media="screen" href="//www.autotraderstatic.com/0_0_0/bundles/base.css" />';
             
-            adOutput += '\n' + '<!-- Impression Tag -->';
-            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
-            
             adOutput += '\n' + '<style type="text/css">a {font-size: 15px; color: #505fbb; text-decoration: none; } a:hover {color: #000000; } a > img {border: none; } #ia-certified-image {margin: 5px 0 5px 0; position: relative; } #ia-certified-logo {float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #ccc; } #ia-certified-sponsor {color: #999; } </style>';
             
             adOutput += '\n' + '<!-- Sponsor Link -->';
@@ -44,7 +41,10 @@
             adOutput += '\n\t' + '</a>';
             adOutput += '\n' + '</div>';
             adOutput += '\n' + '<div class="atcui-clearboth"></div>';
-        
+                    
+            adOutput += '\n' + '<!-- Impression Tag -->';
+            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
+
             
                         
             if (formCompetion() != false){
