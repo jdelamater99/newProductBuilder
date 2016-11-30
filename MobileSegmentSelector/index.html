@@ -35,7 +35,7 @@
             adOutput += '\n\t\t' + '</div>';
             
             adOutput += '\n\t\t' + '<!-- Sponsor Logo -->';
-            adOutput += '\n\t\t' + '<div class="ia-m-logo"><span class="ia-m-logo-position"></span><img src="'+el(pageFormFields[2].id).value+'" /></div>';
+            adOutput += '\n\t\t' + '<div class="ia-m-logo"><span class="ia-m-logo-position"></span><img src="'+el(pageFormFields[6].id).value+'" /></div>';
             adOutput += '\n\t\t' + '<div class="ia-m-clear"></div>';
             adOutput += '\n\t' + '</a>';
             adOutput += '\n' + '</span>';
@@ -53,15 +53,15 @@
             adOutput += '\n\t' + '"'+pageFormFields[2].id+'": "' + el(pageFormFields[2].id).value + '",';
 
             // text lines
-            adOutput += '\n\t' + '"'+pageFormFields[3].id+'": "' + el(pageFormFields[3].id).value + '",';
-            adOutput += '\n\t' + '"'+pageFormFields[4].id+'": "' + el(pageFormFields[4].id).value + '",';
-            adOutput += '\n\t' + '"'+pageFormFields[5].id+'": "%%CLICK_URL_ESC%%' + el(pageFormFields[5].id).value + '"';
+            //adOutput += '\n\t' + '"'+pageFormFields[3].id+'": "' + el(pageFormFields[3].id).value + '",';
+            //adOutput += '\n\t' + '"'+pageFormFields[4].id+'": "' + el(pageFormFields[4].id).value + '",';
+            //adOutput += '\n\t' + '"'+pageFormFields[5].id+'": "%%CLICK_URL_ESC%%' + el(pageFormFields[5].id).value + '"';
 
             adOutput += '\n' + '}),window.top.location.href);';
             adOutput += '\n' + '})(window);';
             adOutput += '\n' + '<\/script>';
             
-            adOutput += '\n\n' + '<IMG SRC="{impressionTracker}" BORDER=0 WIDTH=1 HEIGHT=1 ALT="Advertisement"></A>';
+            adOutput += '\n\n' + '<IMG SRC="'+el(pageFormFields[1].id).value+'" BORDER=0 WIDTH=1 HEIGHT=1 ALT="Advertisement"></A>';
 
             
                         
@@ -79,7 +79,8 @@
         /* 2 */    {id: "imgURL", title: "Image URL (45x20 Facing Right)", tag: "imgURL", type: "bin/id_image.png"},
         /* 3 */    {id: "styleLabelLine1", title: "Line 1", tag: "styleLabelLine1", type: "bin/id_text.png"},
         /* 4 */    {id: "styleLabelLine2", title: "Line 2", tag: "styleLabelLine2", type: "bin/id_text.png"},
-        /* 5 */    {id: "searchURL", title: "Search URL", tag: "searchURL", type: "bin/id_URL.png"}
+        /* 5 */    {id: "searchURL", title: "Search URL", tag: "searchURL", type: "bin/id_URL.png"},
+        /* 6 */    {id: "logoURL", title: "Logo URL", tag: "logoURL", type: "bin/id_image.png"}
         ];
         
         var styleSelect = [
@@ -104,7 +105,8 @@
             {id: "imgURL", value: "https://ads.autotrader.com/adops/HTML/images/{BRAND}/segmentselector/{MODEL}.jpg"},
             {id: "styleLabelLine1", value: "Sponsored by {BRAND}"},
             {id: "styleLabelLine2", value: "2016 {BRAND} {MODEL}"},
-            {id: "searchURL", value: "https://m.autotrader.com/cars-for-sale/searchresults.xhtml?priceLabel=Any&endYear=2017&pageLayout=list&startYear=2015&listingTypes=new&useGps=true&totalResultCount=97291&mmt=%5B{BRAND}%5B{MODEL}%5B%5D%5D%5B%5D%5D"}
+            {id: "searchURL", value: "https://m.autotrader.com/cars-for-sale/searchresults.xhtml?priceLabel=Any&endYear=2017&pageLayout=list&startYear=2015&listingTypes=new&useGps=true&totalResultCount=97291&mmt=%5B{BRAND}%5B{MODEL}%5B%5D%5D%5B%5D%5D"},
+            {id: "logoURL", value: "https://ads.autotrader.com/adops/HTML/images/{BRAND}/SegmentSelector/{BRAND}_logo.png"}
         ];
         
         function buildForm() {
