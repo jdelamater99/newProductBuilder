@@ -83,6 +83,15 @@ function fieldCheck(s){
     if (el(s).value == defaultValues[i].value){
         $( "#" + s ).addClass( "errorInput" );
         v = -1;
+        
+        // remove excludes from check
+        for (j=0; j<excludes.length; j++){
+            console.log (defaultValues[i].id + " :: " + excludes[j])
+            if (defaultValues[i].id == excludes[j]){
+                $( "#" + s ).removeClass( "errorInput" );
+                v = 1;       
+            }
+        }
     }
 
     // exempt from field check
