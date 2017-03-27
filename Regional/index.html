@@ -3,7 +3,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>Homepage Explore New Cars</title>
+    <title>Regional</title>
         
     <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
         
@@ -17,27 +17,28 @@
         var excludes = ["tracking", "exploreLink"];
         
         function init() {
-            var adOutput = 'No Chassis Version';
+            var adOutput = '';
 
             var adOutputSpdy = '<script>';
             adOutputSpdy += '\n' + 'adJson = [{';
-            adOutputSpdy += '\n\t' + '"id" : "exploreNewCar",';
+            adOutputSpdy += '\n\t' + '"id" : "regional",';
             adOutputSpdy += '\n\t' + '"width" : "%%WIDTH%%",';
-            adOutputSpdy += '\n\t' + '"heading" : "Explore New Cars",';
-            adOutputSpdy += '\n\t' + '"content" : "Tell us what you like, and we\'ll show you matching cars and which dealerships have those matches in stock.",';
+            adOutputSpdy += '\n\t' + '"heading" : "' + el(pageFormFields[5].id).value + '",';
+            adOutputSpdy += '\n\t' + '"content" : "' + el(pageFormFields[6].id).value + '",';
             adOutputSpdy += '\n\t' + ' "image" : "' + el(pageFormFields[0].id).value + '",';
             adOutputSpdy += '\n\t' + ' "logo" : "' + el(pageFormFields[1].id).value + '",';
             adOutputSpdy += '\n\t' + '"sponsoredBy" : "' + el(pageFormFields[2].id).value + '",';
             adOutputSpdy += '\n\t' + ' "exitText" : "' + el(pageFormFields[3].id).value + '",';
             adOutputSpdy += '\n\t' + '"exitLink" : "' + el(pageFormFields[4].id).value + '",';
-            adOutputSpdy += '\n\t' + '"buttonLink" : "/new-car/"';
+            adOutputSpdy += '\n\t' + '"buttonLink" : "' + el(pageFormFields[7].id).value + '"';
             adOutputSpdy += '\n' + '}];';
             adOutputSpdy += '\n' + '<\/script>';
             adOutputSpdy += '\n' + '<script src="//content.autotrader.com/content/dam/autotrader/integrated_ads/homepageBuckets.js"><\/script>';
                         
             if (formCompetion() != false){
-                output = unHTMLEntities(adOutput);
+                //output = unHTMLEntities(adOutput);
                 outputSpdy = unHTMLEntities(adOutputSpdy);
+                output = outputSpdy;
                 el("output").innerHTML = output;
                 el("outputSpdy").innerHTML = outputSpdy;
             } else {
@@ -51,7 +52,10 @@
         /* 1 */    {id: "sponsorLogo", title: "Sponsor Logo (123x30 max)", tag: "sponsorLogo", type: "id_image.png"},
         /* 2 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "id_text.png"},
         /* 3 */    {id: "exitTxt", title: "Link Text", tag: "exitTxt", type: "id_text.png"},
-        /* 4 */    {id: "exitLink", title: "Link URL", tag: "exitLink", type: "id_url.png"}
+        /* 4 */    {id: "exitLink", title: "Link URL", tag: "exitLink", type: "id_url.png"},
+        /* 5 */    {id: "headerTxt", title: "Heading Text", tag: "headerTxt", type: "id_text.png"},
+        /* 6 */    {id: "contentTxt", title: "Content Text", tag: "contentTxt", type: "id_text.png"},
+        /* 7 */    {id: "btnLink", title: "Button Link", tag: "btnLink", type: "id_url.png"}
         ];
         
         var defaultValues = [
@@ -59,7 +63,10 @@
             {id: "sponsorLogo", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/certified/{YEAR}/Nov/{BRAND}-logo.jpg"},
             {id: "sponsorBrand", value: "{BRAND}"},
             {id: "exitTxt", value: "{See program details}"},
-            {id: "exitLink", value: "https://ad.doubleclick.net/ddm/clk/XXXX;XXXX;a"}
+            {id: "exitLink", value: "https://ad.doubleclick.net/ddm/clk/XXXX;XXXX;a"},
+            {id: "headerTxt", value: "{Chevy Silverado}"},
+            {id: "contentTxt", value: "{Steel bed vs. aluminum bed? Easy answer.}"},
+            {id: "btnLink", value: "{/cars-for-sale/New+Cars/Chevrolet/Silverado+and+other+C~K1500/subject?endYear=2017}"}
         ];
 
         
@@ -103,7 +110,7 @@
             </div>
         </form>
     	
-    	<div id="output1" style="display: none;">
+    	<div id="output1">
             Classic HP<br />
     		<textarea id="output"></textarea>
     	</div>

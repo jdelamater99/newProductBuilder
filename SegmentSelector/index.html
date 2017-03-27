@@ -10,8 +10,11 @@
     <script src="../bin/builderFunctions.js" type="text/javascript"></script>
         
     <script>
+        // Version 2
+        // Add Speedy Output
+        
         // exempt from field check
-        var excludes = ["vidUrl", "vidTriggerUrl", "tracking"];
+        var excludes = ["tracking"];
         
         function init() {
             var adOutput = '<script type="text/javascript">';
@@ -39,17 +42,24 @@
 
             // searchURL
             adOutput += '\n\t\t' + '"'+pageFormFields[6].id+'": "%%CLICK_URL_ESC%%' + el(pageFormFields[6].id).value + '",';
+            
+            // impression
+            adOutput += '\n\t\t' + '"'+pageFormFields[7].id+'": "' + el(pageFormFields[7].id).value.replace(/"/g, "'") + '",';
+            
+            // view tag
+            adOutput += '\n\t\t' + '"'+pageFormFields[8].id+'": "' + el(pageFormFields[8].id).value + '",';
 
             adOutput += '\n\t' + '}),window.location.href);';
             adOutput += '\n' + '})(window);';
             adOutput += '\n' + '<\/script>';
+            
+            var adOutputSpdy = '';
 
-            // impresssion tracker
-            adOutput += '\n' + el(pageFormFields[7].id).value;
-                        
             if (formCompetion() != false){
                 output = unHTMLEntities(adOutput);
+                outputSpdy = output;
                 el("output").innerHTML = output;
+                el("outputSpdy").innerHTML = outputSpdy;
             } else {
                 el("output").innerHTML = "Fill out all the fields to generate the tag";   
             }
@@ -63,7 +73,8 @@
         /* 4 */    {id: "styleLabelLine2", title: "Line 2", tag: "styleLabelLine2", type: "bin/id_text.png"},
         /* 5 */    {id: "searchText", title: "Search Text", tag: "searchText", type: "bin/id_text.png"},
         /* 6 */    {id: "searchURL", title: "Search URL", tag: "searchURL", type: "bin/id_url.png"},
-        /* 7 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"}   
+        /* 7 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"},
+        /* 8 */    {id: "viewTag", title: "View Tag", tag: "viewTag", type: "bin/id_tag.png"}
         ];
         
         var defaultValues = [
@@ -74,7 +85,8 @@
             {id: "styleLabelLine1", value: "{SEGEMENT} sponsored by {MAKE}"},
             {id: "styleLabelLine2", value: "2016 {MAKE} {MODEl}"},
             {id: "searchText", value: "{Search Now}"},
-            {id: "searchURL", value: "http://www.autotrader.com/cars-for-sale/New+Cars/{YEAR}/{MAKE}/{MODEL}"}
+            {id: "searchURL", value: "http://www.autotrader.com/cars-for-sale/{MAKE}/{MODEL}"},
+            {id: "viewTag", value: "{}"}
         ];
         
         var styleSelect = [
@@ -140,8 +152,15 @@
             </div>
         </form>
     	
-    	<p>
+    	<div id="output1">
+            Classic HP<br />
     		<textarea id="output"></textarea>
-    	</p>
+    	</div>
+        
+        <div id="output2">
+            Speedy/React HP<br />
+            <textarea id="outputSpdy"></textarea><br />
+            <span class="errorInput">What type of impression tracker? Tag or URL? What's a view tag?</span>
+        </div>
     </body>
 </html>

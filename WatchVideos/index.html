@@ -3,7 +3,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>Homepage Explore New Cars</title>
+    <title>Watch Videos</title>
         
     <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
         
@@ -17,27 +17,28 @@
         var excludes = ["tracking", "exploreLink"];
         
         function init() {
-            var adOutput = 'No Chassis Version';
+            var adOutput = '';
 
             var adOutputSpdy = '<script>';
             adOutputSpdy += '\n' + 'adJson = [{';
-            adOutputSpdy += '\n\t' + '"id" : "exploreNewCar",';
+            adOutputSpdy += '\n\t' + '"id" : "videoCenter",';
             adOutputSpdy += '\n\t' + '"width" : "%%WIDTH%%",';
-            adOutputSpdy += '\n\t' + '"heading" : "Explore New Cars",';
-            adOutputSpdy += '\n\t' + '"content" : "Tell us what you like, and we\'ll show you matching cars and which dealerships have those matches in stock.",';
+            adOutputSpdy += '\n\t' + '"heading" : "Watch Videos",';
+            adOutputSpdy += '\n\t' + '"content" : "Watch the experts review cars, discuss the latest car news, showcase vehicle concepts, highlight must-see features and more.",';
             adOutputSpdy += '\n\t' + ' "image" : "' + el(pageFormFields[0].id).value + '",';
             adOutputSpdy += '\n\t' + ' "logo" : "' + el(pageFormFields[1].id).value + '",';
             adOutputSpdy += '\n\t' + '"sponsoredBy" : "' + el(pageFormFields[2].id).value + '",';
             adOutputSpdy += '\n\t' + ' "exitText" : "' + el(pageFormFields[3].id).value + '",';
             adOutputSpdy += '\n\t' + '"exitLink" : "' + el(pageFormFields[4].id).value + '",';
-            adOutputSpdy += '\n\t' + '"buttonLink" : "/new-car/"';
+            adOutputSpdy += '\n\t' + '"buttonLink" : "/videos/"';
             adOutputSpdy += '\n' + '}];';
             adOutputSpdy += '\n' + '<\/script>';
             adOutputSpdy += '\n' + '<script src="//content.autotrader.com/content/dam/autotrader/integrated_ads/homepageBuckets.js"><\/script>';
                         
             if (formCompetion() != false){
-                output = unHTMLEntities(adOutput);
+                //output = unHTMLEntities(adOutput);
                 outputSpdy = unHTMLEntities(adOutputSpdy);
+                output = outputSpdy;
                 el("output").innerHTML = output;
                 el("outputSpdy").innerHTML = outputSpdy;
             } else {
@@ -103,7 +104,7 @@
             </div>
         </form>
     	
-    	<div id="output1" style="display: none;">
+    	<div id="output1">
             Classic HP<br />
     		<textarea id="output"></textarea>
     	</div>
