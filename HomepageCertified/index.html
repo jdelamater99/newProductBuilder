@@ -11,8 +11,11 @@
     <script src="../bin/builderFunctions.js" type="text/javascript"></script>
         
     <script>
+        // Version 2
+        // Add Speedy Output
+        
         // exempt from field check
-        var excludes = ["vidUrl", "vidTriggerUrl", "tracking"];
+        var excludes = ["tracking", "exploreLink"];
         
         function init() {
             var adOutput = '<!-- DESKTOP: CERTIFIED AD (300x201) --><link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" media="screen" href="//www.autotraderstatic.com/0_0_0/bundles/base.css" />';
@@ -31,7 +34,7 @@
             
             adOutput += '\n' + '<!-- Sponsor Brand -->';
             adOutput += '\n' + '<div id="ia-certified-sponsor">';
-            adOutput += '\n\t' + el(pageFormFields[4].id).value;
+            adOutput += '\n\t' + 'Sponsored by ' + el(pageFormFields[4].id).value;
             adOutput += '\n' + '</div>';
             adOutput += '\n' + '<div id="ia-certified-link">';
             
@@ -45,11 +48,28 @@
             adOutput += '\n' + '<!-- Impression Tag -->';
             adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
 
-            
+            var adOutputSpdy = '<script>';
+            adOutputSpdy += '\n' + 'adJson = [{';
+            adOutputSpdy += '\n\t' + '"id" : "cpo",';
+            adOutputSpdy += '\n\t' + '"width" : "%%WIDTH%%",'; 
+            adOutputSpdy += '\n\t' + '"heading" : "Certified Programs",';
+            adOutputSpdy += '\n\t' + '"content" : "Learn more about the benefits of buying a certified pre-owned (CPO) car.",';
+            adOutputSpdy += '\n\t' + '"image" : "' + el(pageFormFields[2].id).value + '",';
+            adOutputSpdy += '\n\t' + '"logo" : "' + el(pageFormFields[3].id).value + '",';
+            adOutputSpdy += '\n\t' + '"sponsoredBy" : "' + el(pageFormFields[4].id).value + '",';
+            adOutputSpdy += '\n\t' + '"sponsoredExitLinkText":"' + el(pageFormFields[5].id).value + '",';
+            adOutputSpdy += '\n\t' + ' "sponsoredExitLink" : "%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '",';
+            adOutputSpdy += '\n\t' + '"exploreText" : "Explore",';
+            adOutputSpdy += '\n\t' + ' "exploreLink" : "%%CLICK_URL_ESC%%' + el(pageFormFields[6].id).value + '"';
+            adOutputSpdy += '\n' + '}];';
+            adOutputSpdy += '\n' + '<\/script>';
+            adOutputSpdy += '\n' + '<script src="//content.autotrader.com/content/dam/autotrader/integrated_ads/homepageBuckets.js"><\/script>';
                         
             if (formCompetion() != false){
                 output = unHTMLEntities(adOutput);
+                outputSpdy = unHTMLEntities(adOutputSpdy);
                 el("output").innerHTML = output;
+                el("outputSpdy").innerHTML = outputSpdy;
             } else {
                 el("output").innerHTML = "Fill out all the fields to generate the tag";   
             }
@@ -63,7 +83,8 @@
         /* 2 */    {id: "sponsorImg", title: "Sponsor Image (300x150)", tag: "sponsorImg", type: "id_image.png"},
         /* 3 */    {id: "sponsorLogo", title: "Sponsor Logo (123x30 max)", tag: "sponsorLogo", type: "id_image.png"},
         /* 4 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "id_text.png"},
-        /* 5 */    {id: "sponsorLinkTxt", title: "Link Text", tag: "sponsorLinkTxt", type: "id_text.png"}
+        /* 5 */    {id: "sponsorLinkTxt", title: "Link Text", tag: "sponsorLinkTxt", type: "id_text.png"},
+        /* 6 */    {id: "exploreLink", title: "Explore Link", tag: "exploreLink", type: "id_url.png"}
         ];
         
         var defaultValues = [
@@ -71,8 +92,9 @@
             {id: "sponsorLink", value: "https://ad.doubleclick.net/ddm/clk/XXXX;XXXX;a"},
             {id: "sponsorImg", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/certified/{YEAR}/Nov/HP_CPO_300x150_{BRAND}.png"},
             {id: "sponsorLogo", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/certified/{YEAR}/Nov/{BRAND}-certified-logo.jpg"},
-            {id: "sponsorBrand", value: "Sponsored by {BRAND}"},
-            {id: "sponsorLinkTxt", value: "{See program details}"}
+            {id: "sponsorBrand", value: "{BRAND}"},
+            {id: "sponsorLinkTxt", value: "{See program details}"},
+            {id: "exploreLink", value: "http://www.autotrader.com/research/certified-cars/"}
         ];
 
         
@@ -116,8 +138,15 @@
             </div>
         </form>
     	
-    	<p>
+    	<div id="output1">
+            Classic HP<br />
     		<textarea id="output"></textarea>
-    	</p>
+    	</div>
+        
+        <div id="output2">
+            Speedy/React HP<br />
+            <textarea id="outputSpdy"></textarea><br />
+            <span class="errorInput">No Impression tracker? Or should just be added to end of code?</span>
+        </div>
     </body>
 </html>
