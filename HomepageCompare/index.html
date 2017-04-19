@@ -55,7 +55,7 @@
             adOutputSpdy += '\n\t' + '"id" : "compare",';
             adOutputSpdy += '\n\t' + '"width" : "%%WIDTH%%",';
             adOutputSpdy += '\n\t' + '"heading" : "Compare Cars",';
-            adOutputSpdy += '\n\t' + '"content" : "Which cars interest you? We\'ll highlight the differences to help you choose.",';
+            adOutputSpdy += '\n\t' + '"content" : "' + el(pageFormFields[7].id).value + '",';
             adOutputSpdy += '\n\t' + '"image" : "' + el(pageFormFields[2].id).value + '",';
             adOutputSpdy += '\n\t' + '"logo" : "' + el(pageFormFields[4].id).value + '",';
             adOutputSpdy += '\n\t' + '"sponsoredBy" : "' + el(pageFormFields[5].id).value + '",';
@@ -86,7 +86,7 @@
         /* 3 */    {id: "sponsorModel", title: "Sponsor Model", tag: "sponsorModel", type: "bin/id_text.png"},
         /* 4 */    {id: "sponsorLogo", title: "Sponsor Logo (123x30 max)", tag: "sponsorLogo", type: "bin/id_image.png"},
         /* 5 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "bin/id_text.png"},
-        /* 6 */    {id: "sponsorLinkTxt", title: "Link Text", tag: "sponsorLinkTxt", type: "bin/id_text.png"},
+        /* 6 */    {id: "sponsorLinkTxt", title: "Exit Button Text", tag: "sponsorLinkTxt", type: "bin/id_text.png"},
         /* 7 */    {id: "contentTxt", title: "Content Text", tag: "contentTxt", type: "bin/id_text.png"},
         ];
         
@@ -98,7 +98,7 @@
             {id: "sponsorLogo", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/compare/{YEAR}/12/{BRAND}-logo_48x30.png"},
             {id: "sponsorBrand", value: "Sponsored by {BRAND}"},
             {id: "sponsorLinkTxt", value: "Compare this car to others"},
-            {id: "contentTxt", value: "Which cars interest you? We'll highlight the differences to help you choose."}
+            {id: "contentTxt", value: "{Which cars interest you? We'll highlight the differences to help you choose.}"}
         ];
         
         function buildForm() {
