@@ -2,7 +2,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>Homepage Compare 300x200</title>
+    <title>Homepage Compare 250x390</title>
         
     <link type="text/css" href="../bin/builder.css" rel="stylesheet" />
         
@@ -17,39 +17,6 @@
         var excludes = ["tracking", "contentTxt"];
         
         function init() {
-            var adOutput = '<!-- DESKTOP: COMPARE CAR AD (300x200) --> <link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"> <link rel="stylesheet" type="text/css" media="screen" href="//www.autotraderstatic.com/0_0_0/bundles/base.css" /> <style type="text/css"> #ia-compare-imp {position: relative; right: 0; top: 0; z-index: -1; } a {font-size: 15px; color: #505fbb; text-decoration: none; } a:hover {color: #000000; } a > img {border: none; } #ia-compare-image {margin: 0; z-index: 10010; } #ia-compare-model {position: relative; top: -30px; color: #666; } #ia-compare-logo {float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #ccc; } #ia-compare-sponsor {color: #999; } </style>';
-            
-            adOutput += '\n' + '<!-- Impression Tag -->';
-            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
-            
-            adOutput += '\n' + '<!-- Sponsor Link -->';
-            adOutput += '\n' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
-
-            adOutput += '\n\t' + '<!-- Sponsor Image -->';
-            adOutput += '\n\t' + '<img id="ia-compare-image" src="' + el(pageFormFields[2].id).value + '" style="width:100%"/>';
-            adOutput += '\n' + '</a>';
-            adOutput += '\n' + '<div id="ia-compare-model" style="display:none">';
-            
-            adOutput += '\n\t' + '<!-- Sponsor Model -->';
-            adOutput += '\n\t' + el(pageFormFields[3].id).value;
-            adOutput += '\n' + '</div>';
-            
-            adOutput += '\n' + '<!-- Sponsor Logo -->';
-            adOutput += '\n' + '<img id="ia-compare-logo" src="' + el(pageFormFields[4].id).value + '" />';
-            adOutput += '\n' + '<div id="ia-compare-sponsor">';
-            
-            adOutput += '\n\t' + '<!-- Sponsor Brand -->';
-            adOutput += '\n\t' + el(pageFormFields[5].id).value;
-            adOutput += '\n' + '</div>';
-            adOutput += '\n\t' + '<div id="ia-compare-link">';
-            
-            adOutput += '\n\t' + '<!-- Sponsor Link -->';
-            adOutput += '\n\t' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
-            adOutput += '\n\t\t' + el(pageFormFields[6].id).value + ' <span class="atcui-icon atcui-externalLink"></span>';
-            adOutput += '\n\t' + '</a>';
-            adOutput += '\n' + '</div>';
-            adOutput += '\n' + '<div class="atcui-clearboth"></div>';
-        
             var adOutputSpdy = '<script>';
             adOutputSpdy += '\n' + 'adJson = [{';
             adOutputSpdy += '\n\t' + '"id" : "compare",';
@@ -66,12 +33,11 @@
             adOutputSpdy += '\n' + '}];';
             adOutputSpdy += '\n' + '<\/script>';
             adOutputSpdy += '\n' + '<script src="//content.autotrader.com/content/dam/autotrader/integrated_ads/homepageBuckets.js"><\/script>';
+            adOutputSpdy += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
     
                         
             if (formCompetion() != false){
-                output = unHTMLEntities(adOutput);
                 outputSpdy = unHTMLEntities(adOutputSpdy);
-                el("output").innerHTML = output;
                 el("outputSpdy").innerHTML = outputSpdy;
             } else {
                 el("output").innerHTML = "Fill out all the fields to generate the tag";   
@@ -82,9 +48,9 @@
         /* 0 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"},
             
         /* 1 */    {id: "sponsorLink", title: "Sponsor Link", tag: "sponsorLink", type: "bin/id_url.png"},
-        /* 2 */    {id: "sponsorImg", title: "Sponsor Image (300x150)", tag: "sponsorImg", type: "bin/id_image.png"},
+        /* 2 */    {id: "sponsorImg", title: "Sponsor Image (248x170)", tag: "sponsorImg", type: "bin/id_image.png"},
         /* 3 */    {id: "sponsorModel", title: "Sponsor Model", tag: "sponsorModel", type: "bin/id_text.png"},
-        /* 4 */    {id: "sponsorLogo", title: "Sponsor Logo (123x30 max)", tag: "sponsorLogo", type: "bin/id_image.png"},
+        /* 4 */    {id: "sponsorLogo", title: "Sponsor Logo (60x40 max)", tag: "sponsorLogo", type: "bin/id_image.png"},
         /* 5 */    {id: "sponsorBrand", title: "Sponsor Brand", tag: "sponsorBrand", type: "bin/id_text.png"},
         /* 6 */    {id: "sponsorLinkTxt", title: "Exit Button Text", tag: "sponsorLinkTxt", type: "bin/id_text.png"},
         /* 7 */    {id: "contentTxt", title: "Content Text", tag: "contentTxt", type: "bin/id_text.png"},
@@ -140,15 +106,9 @@
             </div>
         </form>
     	
-    	<div id="output1">
-            Classic HP<br />
-    		<textarea id="output"></textarea>
-    	</div>
-        
         <div id="output2">
             Speedy/React HP<br />
             <textarea id="outputSpdy"></textarea><br />
-            <span class="errorInput">No Impression tracker? Or should just be added to end of code?</span>
         </div>
     </body>
 </html>

@@ -18,36 +18,6 @@
         var excludes = ["tracking", "exploreLink"];
         
         function init() {
-            var adOutput = '<!-- DESKTOP: CERTIFIED AD (300x201) --><link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" media="screen" href="//www.autotraderstatic.com/0_0_0/bundles/base.css" />';
-            
-            adOutput += '\n' + '<style type="text/css">a {font-size: 15px; color: #505fbb; text-decoration: none; } a:hover {color: #000000; } a > img {border: none; } #ia-certified-image {margin: 5px 0 5px 0; position: relative; } #ia-certified-logo {float: left; padding-right: 10px; margin-right: 10px; border-right: 1px solid #ccc; } #ia-certified-sponsor {color: #999; } </style>';
-            
-            adOutput += '\n' + '<!-- Sponsor Link -->';
-            adOutput += '\n' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
-
-            adOutput += '\n\t' + '<!-- Sponsor Image -->';
-            adOutput += '\n\t' + '<img id="ia-certified-image" src="' + el(pageFormFields[2].id).value + '">';
-            adOutput += '\n' + '</a>';
-            
-            adOutput += '\n' + '<!-- Sponsor Logo -->';
-            adOutput += '\n' + '<img id="ia-certified-logo" src="' + el(pageFormFields[3].id).value + '">';
-            
-            adOutput += '\n' + '<!-- Sponsor Brand -->';
-            adOutput += '\n' + '<div id="ia-certified-sponsor">';
-            adOutput += '\n\t' + 'Sponsored by ' + el(pageFormFields[4].id).value;
-            adOutput += '\n' + '</div>';
-            adOutput += '\n' + '<div id="ia-certified-link">';
-            
-            adOutput += '\n\t' + '<!-- Sponsor Link -->';
-            adOutput += '\n\t' + '<a href="%%CLICK_URL_ESC%%' + el(pageFormFields[1].id).value + '" target="_blank">';
-            adOutput += '\n\t\t' + el(pageFormFields[5].id).value + ' <span class="atcui-icon atcui-externalLink"></span>';
-            adOutput += '\n\t' + '</a>';
-            adOutput += '\n' + '</div>';
-            adOutput += '\n' + '<div class="atcui-clearboth"></div>';
-                    
-            adOutput += '\n' + '<!-- Impression Tag -->';
-            adOutput += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
-
             var adOutputSpdy = '<script>';
             adOutputSpdy += '\n' + 'adJson = [{';
             adOutputSpdy += '\n\t' + '"id" : "cpo",';
@@ -64,11 +34,10 @@
             adOutputSpdy += '\n' + '}];';
             adOutputSpdy += '\n' + '<\/script>';
             adOutputSpdy += '\n' + '<script src="//content.autotrader.com/content/dam/autotrader/integrated_ads/homepageBuckets.js"><\/script>';
+            adOutputSpdy += '\n' + unHTMLEntities(el(pageFormFields[0].id).value);
                         
             if (formCompetion() != false){
-                output = unHTMLEntities(adOutput);
                 outputSpdy = unHTMLEntities(adOutputSpdy);
-                el("output").innerHTML = output;
                 el("outputSpdy").innerHTML = outputSpdy;
             } else {
                 el("output").innerHTML = "Fill out all the fields to generate the tag";   
@@ -138,15 +107,9 @@
             </div>
         </form>
     	
-    	<div id="output1">
-            Classic HP<br />
-    		<textarea id="output"></textarea>
-    	</div>
-        
         <div id="output2">
             Speedy/React HP<br />
             <textarea id="outputSpdy"></textarea><br />
-            <span class="errorInput">No Impression tracker? Or should just be added to end of code?</span>
         </div>
     </body>
 </html>

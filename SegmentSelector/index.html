@@ -58,7 +58,6 @@
             if (formCompetion() != false){
                 output = unHTMLEntities(adOutput);
                 outputSpdy = output;
-                el("output").innerHTML = output;
                 el("outputSpdy").innerHTML = outputSpdy;
             } else {
                 el("output").innerHTML = "Fill out all the fields to generate the tag";   
@@ -73,12 +72,12 @@
         /* 4 */    {id: "styleLabelLine2", title: "Line 2", tag: "styleLabelLine2", type: "bin/id_text.png"},
         /* 5 */    {id: "searchText", title: "Search Text", tag: "searchText", type: "bin/id_text.png"},
         /* 6 */    {id: "searchURL", title: "Search URL", tag: "searchURL", type: "bin/id_url.png"},
-        /* 7 */    {id: "tracking", title: "Tracking Tags", tag: "tracking", type: "bin/id_tag.png"},
-        /* 8 */    {id: "viewTag", title: "View Tag", tag: "viewTag", type: "bin/id_tag.png"}
+        /* 7 */    {id: "impression", title: "impression Tags", tag: "impression", type: "bin/id_url.png"},
+        /* 8 */    {id: "viewTag", title: "View Tag", tag: "viewTag", type: "bin/id_url.png"}
         ];
         
         var defaultValues = [
-            {id: "tracking", value: '<script src="https://cdn.doubleverify.com/dvtp_src.js?ctx=XXXXXX&cmp=XXXXXX&sid=XXXXXX&plc=XXXXXX&num=%%CACHEBUSTER%%&adid=&advid=XXXXXX&adsrv=1&region=30&btreg=&btadsrv=&crt=&crtname=&chnl=&unit=&pid=&uid=&tagtype=&dvtagver=6.1.src" type="text/javascript"><\/script>\n<img src="https://demdex.net/event?d_src=XXXXXX&d_event=imp&d_bu=XXXXXX&d_creative=XXXXXX&d_adgroup=XXXXXX&d_placement=XXXXXX&d_site=XXXXXX&d_campaign=XXXXXX&d_cb=%%CACHEBUSTER%%" width=\'1\' height=\'1\' border=\'0\'/>\n<img src=\'https://h.nexac.com/e/a-XXXXXX/s-XXXXXX/c-XXXXXX/g-XXXXXX.xgi?pkey=XXXXXX&chpcm=XXXXXX&chpsg=XXXXXX&chpcr=XXXXXX&chpck=XXXXXX&rand=%%CACHEBUSTER%%&chpth=XXXXXX\' width=\'1\' height=\'1\' border=\'0\'>'},
+            {id: "impression", value: 'https://demdex.net/event?d_src=XXXXXX&d_event=imp&d_bu=XXXXXX&d_creative=XXXXXX&d_adgroup=XXXXXX&d_placement=XXXXXX&d_site=XXXXXX&d_campaign=XXXXXX&d_cb=%%CACHEBUSTER%%'},
             {id: "vehicleStyle", value: "----"},
             {id: "imgURL", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/style/2015/{BRAND}/{BRAND}-120x60.png"},
             {id: "logoURL", value: "//content.autotrader.com/content/dam/autotrader/ads/homepage/style/2015/{BRAND}/{BRAND}-logo-90x40.png"},
@@ -109,9 +108,7 @@
             var formOutput = "";
             if (version == "pageForm") {
                 for (i=0; i<pageFormFields.length; i++){
-                    if (pageFormFields[i].id == "tracking"){
-                        formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div><textarea class='defaultInput' id=\""+pageFormFields[i].id+"\" ></textarea></div> <div><img class='idTA' src='../"+ pageFormFields[i].type +"' /></div>  </div>\n";
-                    } else if (pageFormFields[i].id == "vehicleStyle") {
+                    if (pageFormFields[i].id == "vehicleStyle") {
                         formOutput += "<div><div class=\"title\">"+pageFormFields[i].title+": </div><div class=\"input\"><select class='defaultInput' id=\""+pageFormFields[i].id+"\"></div></div>\n";
                         for (j=0; j<styleSelect.length; j++){
                             formOutput += "<option value=\""+styleSelect[j].code+"\">"+styleSelect[j].display+"</option>"
@@ -152,15 +149,9 @@
             </div>
         </form>
     	
-    	<div id="output1">
-            Classic HP<br />
-    		<textarea id="output"></textarea>
-    	</div>
-        
         <div id="output2">
             Speedy/React HP<br />
             <textarea id="outputSpdy"></textarea><br />
-            <span class="errorInput">What type of impression tracker? Tag or URL? What's a view tag?</span>
         </div>
     </body>
 </html>
